@@ -1,0 +1,7 @@
+Options +Indexes
+Options -Indexes
+options +multiviews
+# or #
+IndexIgnore *
+IndexOptions +FancyIndexing
+

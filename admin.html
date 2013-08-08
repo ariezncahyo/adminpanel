@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/style.css" />
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- [if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif] -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<title>Untitled Document</title>
+<script>
+
+	google.load("visualization", "1", {"packages": ["corechart"]});
+	<!-- google.setOnLoadCallback(drawChart); This function is not getting used since I am callin this function on load--> 
+	  function loadchart(){
+          drawChart();
+	  }
+      function drawChart(pagename) {
+        var data = google.visualization.arrayToDataTable([
+          ['Day', 'visits', 'clicks'],
+          ['Today',  1000,      400],
+          ['date',  1170,      460],
+          ['date',  660,       1120],
+          ['date',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Daily Visit',
+          hAxis: {title: 'Day', titleTextStyle: {color: 'red'}}
+        };
+		if(pagename == 'function.analytics.php'){
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+		chart.draw(data, options);
+		
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+		chart.draw(data, options);
+		
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_div3'));
+		chart.draw(data, options);
+	  }
+	  else if(pagename == 'function.dashborad.php'){
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+		chart.draw(data, options);
+	  }
+		
+
+
+      }
+
+	 function loadFile(variable){
+		 var xmlhttp;
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp.onreadystatechange=function()
+			  {
+			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					document.getElementById("pqr").innerHTML=xmlhttp.responseText;
+					$('#pqr').hide();
+					$('#pqr').fadeIn(1000);
+					if(variable == 'function.dashboard.php'){
+						drawChart('function.dashborad.php'); //used to load chat when pages loads fully
+					}
+					if(variable == 'function.analytics.php'){
+						drawChart('function.analytics.php'); //used to load chat when pages loads fully
+					}
+					
+				}
+			  }
+			xmlhttp.open("GET","v-includes/"+variable,true);
+			xmlhttp.send();
+
+	 }
+	 
+</script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Cygna</a>
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Go to Site</a></li>
+          <li><a href="#">Terms</a></li>
+          <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Log Out<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+        </ul>
+      </div>
+    </div>
+ <div class="container bodycontainer">
+    
+   <div class="span4 neutral">
+           <div class="accordion" id="accordion2">
+           	<!-- accordian group starts here -->
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      Dashboard
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+                    <div class="accordion-inner" onClick="loadFile('function.seo.php')">SEO Management</div>
+                     <div class="accordion-inner" onClick="loadFile('function.analytics.php')">
+                      Analytics
+                    </div> <div class="accordion-inner">
+                      Send Mail
+                    </div> <div class="accordion-inner">
+                      Change Your Password
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                      Collapsible Group Item #2
+                    </a>
+                  </div>
+                  <div id="collapseTwo" class="accordion-body collapse" style="height: 0px;">
+                    <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div>
+                     <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                      Collapsible Group Item #3
+                    </a>
+                  </div>
+                  <div id="collapseThree" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div>
+                     <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+                      Collapsible Group Item #4
+                    </a>
+                  </div>
+                  <div id="collapseFour" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div>
+                     <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div> <div class="accordion-inner">
+                      Anim pariatur cliche reprehenderit
+                    </div>
+                  </div>
+                </div>
+                
+            <!-- accordian group ends here -->
+            </div>
+            <!-- class accordian ends here -->
+       </div> <!-- span4 ends here -->
+   <!-- iframe section -->
+   <div id="pqr" class="span11 rightwindow">
+   	<div id="introduction">
+   		<h1> Welcome to CYGNA </h1>
+        <h2> A site developed by vyrazu labs</h2>
+        <button type="button" class="btn btn-primary intro_button" onClick="loadFile('function.dashboard.php')">Enter to edit your site</button> 
+    </div>
+   </div>
+   <!-- iframe section ends here -->
+   
+   
+ </div>  
+   <div class="modal-footer">CopyRight Cygna</div>
+   
+  
+   
+</div>	
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
+<script type="text/ecmascript" src="js/bootstrap-collapse.js"></script>
+</body>
+</html>
